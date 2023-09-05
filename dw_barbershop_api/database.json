@@ -8,6 +8,34 @@
       "profile": "ADM",
       "work_days": ["Seg", "Qua"],
       "work_hours": [6, 7, 8]
+    },
+    {
+      "id": 6,
+      "name": "Teste criar conta",
+      "email": "teste@teste.com.br",
+      "password": "123123",
+      "profile": "ADM"
+    },
+    {
+      "id": 7,
+      "name": "teste2",
+      "email": "tete22@gmail.com",
+      "password": "123123",
+      "profile": "ADM"
+    },
+    {
+      "id": 8,
+      "name": "teste3",
+      "email": "teste3@gmail.com",
+      "password": "123123",
+      "profile": "ADM"
+    },
+    {
+      "id": 9,
+      "name": "teste4",
+      "email": "teste4@gmail.com",
+      "password": "123123",
+      "profile": "ADM"
     }
   ],
   "adm_users": [],
@@ -19,6 +47,14 @@
       "email": "barbeariax@gmail.com",
       "opening_days": ["Seg", "Qua", "Sab"],
       "opening_hours": [6, 7, 8, 9, 18, 19, 20, 12, 13]
+    },
+    {
+      "id": 3,
+      "user_id": "9",
+      "name": "teste4 barbearia",
+      "email": "teste4barber@gmail.com",
+      "opening_days": ["Qua", "Qui", "Sab", "Dom", "Sex"],
+      "opening_hours": [7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19]
     }
   ],
   "schedules": [
