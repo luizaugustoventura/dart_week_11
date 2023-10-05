@@ -65,6 +65,32 @@
       "profile": "EMPLOYEE",
       "work_days": ["Qua", "Sab"],
       "work_hours": [7, 8, 9, 18, 19, 20]
+    },
+    {
+      "id": 13,
+      "name": "Imersao DW",
+      "email": "dw@imersao.com.br",
+      "password": "123123",
+      "profile": "ADM"
+    },
+    {
+      "id": 14,
+      "name": "Imersao",
+      "email": "imersao@dw.com.br",
+      "password": "123123",
+      "profile": "ADM",
+      "work_days": ["Seg", "Ter", "Qua", "Qui", "Sex"],
+      "work_hours": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+    },
+    {
+      "id": 15,
+      "name": "Colab1",
+      "email": "colab@dw.com.br",
+      "password": "123123",
+      "barbershop_id": 4,
+      "profile": "EMPLOYEE",
+      "work_days": ["Seg", "Ter", "Qua", "Qui", "Sex"],
+      "work_hours": [11, 12, 13, 14, 15]
     }
   ],
   "adm_users": [],
@@ -84,6 +110,14 @@
       "email": "teste4barber@gmail.com",
       "opening_days": ["Qua", "Qui", "Sab", "Dom", "Sex"],
       "opening_hours": [7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19]
+    },
+    {
+      "id": 4,
+      "user_id": "14",
+      "name": "Imersao Barbershop",
+      "email": "imersao_barbershop@dw.com.br",
+      "opening_days": ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+      "opening_hours": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     }
   ],
   "schedules": [
@@ -102,6 +136,38 @@
       "client_name": "rodrigo",
       "date": "2023-09-27T00:00:00.000Z",
       "time": 7
+    },
+    {
+      "id": 3,
+      "barbershop_id": 4,
+      "user_id": 14,
+      "client_name": "Cliente Hoje",
+      "date": "2023-09-29T00:00:00.000Z",
+      "time": 7
+    },
+    {
+      "id": 4,
+      "barbershop_id": 4,
+      "user_id": 14,
+      "client_name": "Cliente 2",
+      "date": "2023-09-29T00:00:00.000Z",
+      "time": 15
+    },
+    {
+      "id": 5,
+      "barbershop_id": 4,
+      "user_id": 15,
+      "client_name": "Teste",
+      "date": "2023-10-04T00:00:00.000Z",
+      "time": 14
+    },
+    {
+      "id": 6,
+      "barbershop_id": 4,
+      "user_id": 15,
+      "client_name": "Teste 3",
+      "date": "2023-10-04T00:00:00.000Z",
+      "time": 12
     }
   ]
 }
