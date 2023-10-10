@@ -1,9 +1,10 @@
 import 'dart:developer';
 
-import 'package:asyncstate/asyncstate.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
 import 'package:dw_barbershop/src/features/auth/login/login_page.dart';
+import 'package:dw_barbershop/src/features/home/adm/home_adm_page.dart';
+import 'package:dw_barbershop/src/features/home/employee/home_employee_page.dart';
 import 'package:dw_barbershop/src/features/splash/splash_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,7 @@ class SplashPage extends ConsumerStatefulWidget {
 class _SplashPageState extends ConsumerState<SplashPage> {
   var _scale = 10.0;
   var _animationOpacityLogo = 0.0;
+  final _animationDidFinish = ValueNotifier(false);
 
   double get _logoAnimationWidth => 100 * _scale;
   double get _logoAnimationHeight => 120 * _scale;
@@ -33,28 +35,55 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     super.initState();
   }
 
+  void navigate(String routeName) {
+    Navigator.of(context).pushAndRemoveUntil(
+      PageRouteBuilder(
+        settings: RouteSettings(name: routeName),
+        pageBuilder: (
+          context,
+          animation,
+          secondaryAnimation,
+        ) {
+          return switch (routeName) {
+            '/home/adm' => const HomeAdmPage(),
+            '/home/employee' => const HomeEmployeePage(),
+            _ => const LoginPage(),
+          };
+        },
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+      ),
+      (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.listen(splashVmProvider, (_, state) {
       state.whenOrNull(
         error: (error, stackTrace) {
-          log('Erro ao validar o login', error: error, stackTrace: stackTrace);
-          Messages.showError('Erro ao validar o login', context);
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil('/auth/login', (route) => false);
+          _animationDidFinish.addListener(() {
+            log('Erro ao validar o login',
+                error: error, stackTrace: stackTrace);
+            Messages.showError('Erro ao validar o login', context);
+            navigate('/auth/login');
+          });
         },
         data: (data) {
-          switch (data) {
-            case SplashState.loggedAdm:
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/home/adm', (route) => false);
-            case SplashState.loggedEmployee:
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/home/employee', (route) => false);
-            case _:
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/auth/login', (route) => false);
-          }
+          _animationDidFinish.addListener(() {
+            switch (data) {
+              case SplashState.loggedAdm:
+                navigate('/home/adm');
+              case SplashState.loggedEmployee:
+                navigate('/home/employee');
+              case _:
+                navigate('/auth/login');
+            }
+          });
         },
       );
     });
@@ -73,32 +102,14 @@ class _SplashPageState extends ConsumerState<SplashPage> {
         ),
         child: Center(
           child: AnimatedOpacity(
-            duration: const Duration(seconds: 1),
+            duration: const Duration(seconds: 3),
             curve: Curves.easeIn,
             opacity: _animationOpacityLogo,
             onEnd: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                PageRouteBuilder(
-                  settings: const RouteSettings(name: '/auth/login'),
-                  pageBuilder: (
-                    context,
-                    animation,
-                    secondaryAnimation,
-                  ) {
-                    return const LoginPage();
-                  },
-                  transitionsBuilder: (_, animation, __, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  },
-                ),
-                (route) => false,
-              );
+              _animationDidFinish.value = true;
             },
             child: AnimatedContainer(
-              duration: const Duration(seconds: 1),
+              duration: const Duration(seconds: 3),
               width: _logoAnimationWidth,
               height: _logoAnimationHeight,
               curve: Curves.linearToEaseOut,
