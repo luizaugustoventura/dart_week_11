@@ -13,7 +13,7 @@
 
 <p>Desenvolvido durante a imersão Dart Week 11, evento realizado pela Flutter Academy e ministrado por Rodrigo Rahman, o DW Barbershop permite que você, administrador, possa agendar clientes para qualquer um de seus colaboradores, além de visualizar a agenda de todos eles. E você, colaborador, pode consultar sua agenda a qualquer momento, além de agendar seus clientes da maneira mais simples e segura possível.</p>
 
-<h4>📰️Sobre o evento: 🗞️</h4>
+<h4>📰️ Sobre o evento: 🗞️</h4>
 <p>O objeto da Dart Week 11 foi criar, utilizando Flutter, um aplicativo de ponta a ponta, explorando os mais novos recursos do Dart 3 e gerenciando os estados com o Riverpod (substituto do Provider, é um framework reativo para gerenciamento de estados com funcionalidade de caching).</p>
 
 <h4>🛠 Tecnologias e ferramentas: 🛠</h4>
